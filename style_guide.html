@@ -108,35 +108,31 @@ instantiates the template.</p>
 
 </div> 
 
-<h3 id="The__define_Guard">The #define Guard</h3>
+<h3 id="_pragma_once_Directive">#pragma once Directive</h3>
 
 <div class="summary">
-<p>All header files should have <code>#define</code> guards to
-prevent multiple inclusion. The format of the symbol name
-should be
-<code><i>&lt;PROJECT&gt;</i>_<i>&lt;PATH&gt;</i>_<i>&lt;FILE&gt;</i>_H_</code>.</p>
+<p>All header files should contain <code>#pragma once</code> directive to
+prevent multiple inclusion.</p>
 </div> 
 
 <div class="stylebody">
 
+<p>Include guards are deprecated as a bad technique.
+  <code>#pragma once</code> requires less code and no special naming convention.
+</p>
 
-
-<p>To guarantee uniqueness, they should
-be based on the full path in a project's source tree. For
-example, the file <code>foo/src/bar/baz.h</code> in
-project <code>foo</code> should have the following
-guard:</p>
-
-<pre>#ifndef FOO_BAR_BAZ_H_
+<pre>
+// Bad practice:
+#ifndef FOO_BAR_BAZ_H_
 #define FOO_BAR_BAZ_H_
-
 ...
-
 #endif  // FOO_BAR_BAZ_H_
 </pre>
 
-
-
+<pre>
+// OK:
+#pragma once
+</pre>
 
 </div> 
 
@@ -4687,9 +4683,6 @@ should appear near top of a file.</p>
 <p class="exception">An <code>#include</code> statement with a
 long path may exceed 80 columns.</p>
 
-<p class="exception">You needn't be concerned about
-<a href="#The__define_Guard">header guards</a> that exceed
-the maximum length. </p>
 </div>
 
 </div> 
