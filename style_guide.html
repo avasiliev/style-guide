@@ -1805,123 +1805,22 @@ members.</p>
 <h3 id="Exceptions">Exceptions</h3>
 
 <div class="summary">
-<p>We do not use C++ exceptions.</p>
+<p>We allow use of standard exceptions as well as user-defined ones.</p>
 </div>
 
 <div class="stylebody">
+<p>A function may throw an appropriate standard exception
+if it is not supposed to be caught in case of error recovery.
+If there are some cases when exception may be suppressed, define
+custom exception.
+</p>
 
-<div class="pros">
-<ul>
-  <li>Exceptions allow higher levels of an application to
-  decide how to handle "can't happen" failures in deeply
-  nested functions, without the obscuring and error-prone
-  bookkeeping of error codes.</li>
+<p>Do not write business-logic based on exceptions. In most cases exception
+should follow a situation when something went really wrong.</p>
 
-  
-
-  <li>Exceptions are used by most other
-  modern languages. Using them in C++ would make it more
-  consistent with Python, Java, and the C++ that others
-  are familiar with.</li>
-
-  <li>Some third-party C++ libraries use exceptions, and
-  turning them off internally makes it harder to
-  integrate with those libraries.</li>
-
-  <li>Exceptions are the only way for a constructor to
-  fail. We can simulate this with a factory function or
-  an <code>Init()</code> method, but these require heap
-  allocation or a new "invalid" state, respectively.</li>
-
-  <li>Exceptions are really handy in testing
-  frameworks.</li>
-</ul>
-</div>
-
-<div class="cons">
-<ul>
-  <li>When you add a <code>throw</code> statement to an
-  existing function, you must examine all of its
-  transitive callers. Either they must make at least the
-  basic exception safety guarantee, or they must never
-  catch the exception and be happy with the program
-  terminating as a result. For instance, if
-  <code>f()</code> calls <code>g()</code> calls
-  <code>h()</code>, and <code>h</code> throws an
-  exception that <code>f</code> catches, <code>g</code>
-  has to be careful or it may not clean up properly.</li>
-
-  <li>More generally, exceptions make the control flow of
-  programs difficult to evaluate by looking at code:
-  functions may return in places you don't expect. This
-  causes maintainability and debugging difficulties. You
-  can minimize this cost via some rules on how and where
-  exceptions can be used, but at the cost of more that a
-  developer needs to know and understand.</li>
-
-  <li>Exception safety requires both RAII and different
-  coding practices. Lots of supporting machinery is
-  needed to make writing correct exception-safe code
-  easy. Further, to avoid requiring readers to understand
-  the entire call graph, exception-safe code must isolate
-  logic that writes to persistent state into a "commit"
-  phase. This will have both benefits and costs (perhaps
-  where you're forced to obfuscate code to isolate the
-  commit). Allowing exceptions would force us to always
-  pay those costs even when they're not worth it.</li>
-
-  <li>Turning on exceptions adds data to each binary
-  produced, increasing compile time (probably slightly)
-  and possibly increasing address space pressure.
-  </li>
-
-  <li>The availability of exceptions may encourage
-  developers to throw them when they are not appropriate
-  or recover from them when it's not safe to do so. For
-  example, invalid user input should not cause exceptions
-  to be thrown. We would need to make the style guide
-  even longer to document these restrictions!</li>
-</ul>
-</div>
-
-<div class="decision">
-<p>On their face, the benefits of using exceptions
-outweigh the costs, especially in new projects. However,
-for existing code, the introduction of exceptions has
-implications on all dependent code. If exceptions can be
-propagated beyond a new project, it also becomes
-problematic to integrate the new project into existing
-exception-free code. Because most existing C++ code at
-Google is not prepared to deal with exceptions, it is
-comparatively difficult to adopt new code that generates
-exceptions.</p>
-
-<p>Given that Google's existing code is not
-exception-tolerant, the costs of using exceptions are
-somewhat greater than the costs in a new project. The
-conversion process would be slow and error-prone. We
-don't believe that the available alternatives to
-exceptions, such as error codes and assertions, introduce
-a significant burden. </p>
-
-<p>Our advice against using exceptions is not predicated
-on philosophical or moral grounds, but practical ones.
- Because we'd like to use our open-source
-projects at Google and it's difficult to do so if those
-projects use exceptions, we need to advise against
-exceptions in Google open-source projects as well.
-Things would probably be different if we had to do it all
-over again from scratch.</p>
-
-<p>This prohibition also applies to the exception-related
-features added in C++11, such as <code>noexcept</code>,
-<code>std::exception_ptr</code>, and
-<code>std::nested_exception</code>.</p>
-
-<p>There is an <a href="#Windows_Code">exception</a> to
-this rule (no pun intended) for Windows code.</p>
-</div>
-
+<p>When catching an exception, always use as concrete exception class as possible.
+Do not catch high-level-abstraction exceptions that are not explicitly intended to be caught.
+</p>
 </div> 
 
 <h3 id="Run-Time_Type_Information__RTTI_">Run-Time Type
