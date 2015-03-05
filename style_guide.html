@@ -784,67 +784,6 @@ for (int i = 0; i &lt; 1000000; ++i)
 we use them extensively. This section lists the main dos and
 don'ts you should follow when writing a class.</p>
 
-<h3 id="Doing_Work_in_Constructors">Doing Work in Constructors</h3>
-
-<div class="summary">
-<p>Avoid doing complex initialization in constructors (in
-particular, initialization that can fail or that requires
-virtual method calls).</p>
-</div>
-
-<div class="stylebody">
-
-<div class="definition">
-<p>It is possible to perform initialization in the body
-of the constructor.</p>
-</div>
-
-<div class="pros">
-<p>Convenience in typing. No need to worry about whether the
-class has been initialized or not.</p>
-</div>
-
-<div class="cons">
-<p>The problems with doing work in constructors are:</p>
-
-<ul>
-  <li>There is no easy way for constructors to signal
-  errors, short of using exceptions (which are
-  <a href="#Exceptions">forbidden</a>).</li>
-
-  <li>If the work fails, we now have an object whose
-  initialization code failed, so it may be an
-  indeterminate state.</li>
-
-  <li>If the work calls virtual functions, these calls
-  will not get dispatched to the subclass
-  implementations. Future modification to your class can
-  quietly introduce this problem even if your class is
-  not currently subclassed, causing much confusion.</li>
-
-  <li>If someone creates a global variable of this type
-  (which is against the rules, but still), the
-  constructor code will be called before
-  <code>main()</code>, possibly breaking some implicit
-  assumptions in the constructor code. For instance,
-  
-  
-  <a href="http://google-gflags.googlecode.com/">gflags</a>
-  will not yet have been initialized.</li>
-</ul>
-</div>
-
-
-<div class="decision">
-<p>Constructors should never call virtual functions or
-attempt to raise non-fatal failures. If your object requires
-non-trivial initialization, consider using
- a factory function or <code>Init()</code>
-method.</p>
-</div>
-
-</div> 
-
 <h3 id="Initialization">Initialization</h3>
 
 <div class="summary">
