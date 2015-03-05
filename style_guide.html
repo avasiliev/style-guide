@@ -3479,103 +3479,108 @@ and <code>else</code> keywords belong on separate lines.</p>
 conditional statement. One includes spaces between the
 parentheses and the condition, and one does not.</p>
 
-<p>The most common form is without spaces. Either is
-fine, but <em>be consistent</em>. If you are modifying a
-file, use the format that is already present. If you are
-writing new code, use the format that the other files in
-that directory or project use. If in doubt and you have
-no personal preference, do not add the spaces.</p>
+<p>We use the most common form which is without spaces.</p>
 
-<pre>if (condition) {  // no spaces inside parentheses
-  ...  // 2 space indent.
-} else if (...) {  // The else goes on the same line as the closing brace.
-  ...
-} else {
-  ...
+<pre>
+if (condition) // no spaces inside parentheses
+{
+    ...  // 4 space indent.
 }
-</pre>
-
-<p>If you prefer you may add spaces inside the
-parentheses:</p>
-
-<pre>if ( condition ) {  // spaces inside parentheses - rare
-  ...  // 2 space indent.
-} else {  // The else goes on the same line as the closing brace.
-  ...
+else if (...) // The else goes on the next line after the closing brace.
+{
+    ...
+}
+else
+{
+    ...
 }
 </pre>
 
 <p>Note that in all cases you must have a space between
-the <code>if</code> and the open parenthesis. You must
-also have a space between the close parenthesis and the
-curly brace, if you're using one.</p>
+the <code>if</code> and the open parenthesis.</p>
 
-<pre class="badcode">if(condition) {   // Bad - space missing after IF.
-if (condition){   // Bad - space missing before {.
-if(condition){    // Doubly bad.
+<pre class="badcode">
+if(condition)   // Bad - space missing after IF.
+    ...;
 </pre>
 
-<pre>if (condition) {  // Good - proper space after IF and before {.
+<pre>
+if (condition)  // Good - proper space after IF.
+    ...;
 </pre>
 
-<p>Short conditional statements may be written on one
-line if this enhances readability. You may use this only
-when the line is brief and the statement does not use the
-<code>else</code> clause.</p>
+<p>Even short conditional statements may not be written on one
+line. Each expression should always be placed on a separate line.</p>
 
-<pre>if (x == kFoo) return new Foo();
+<pre class="badcode">
+// Incorrect:
+if (x == kFoo) return new Foo();
 if (x == kBar) return new Bar();
 </pre>
 
-<p>This is not allowed when the if statement has an
-<code>else</code>:</p>
+<p>Curly braces are not required for single-line statements.
+The rule is simple: if an expression takes two or more lines,
+braces are mandatory.</p>
 
-<pre class="badcode">// Not allowed - IF statement on one line when there is an ELSE clause
-if (x) DoThis();
-else DoThat();
-</pre>
+<pre>
+if (condition)
+    DoSomething();  // 4 space indent.
 
-<p>In general, curly braces are not required for
-single-line statements, but they are allowed if you like
-them; conditional or loop statements with complex
-conditions or statements may be more readable with curly
-braces. Some 
-projects require that an
-<code>if</code> must always always have an accompanying
-brace.</p>
-
-<pre>if (condition)
-  DoSomething();  // 2 space indent.
-
-if (condition) {
-  DoSomething();  // 2 space indent.
+if (condition)
+{
+    DoSomething();
+    DoSomethingElse();
 }
 </pre>
+
+<pre class="badcode">
+// Incorrect:
+if (condition)
+    DoSomething(
+            argument1,
+            argument2);
+
+// Incorrect:
+if (condition)
+    { DoSomething(); DoSomethingElse(); }
+</pre>
+
 
 <p>However, if one part of an
 <code>if</code>-<code>else</code> statement uses curly
 braces, the other part must too:</p>
 
-<pre class="badcode">// Not allowed - curly on IF but not ELSE
-if (condition) {
-  foo;
-} else
-  bar;
+<pre class="badcode">
+// Not allowed - curly on IF but not ELSE
+if (condition)
+{
+    foo;
+    bar;
+}
+else
+    bar;
 
 // Not allowed - curly on ELSE but not IF
 if (condition)
-  foo;
-else {
-  bar;
+    foo;
+else
+{
+    foo;
+    bar;
 }
 </pre>
 
-<pre>// Curly braces around both IF and ELSE required because
+<pre>
+// Curly braces around both IF and ELSE required because
 // one of the clauses used braces.
-if (condition) {
-  foo;
-} else {
-  bar;
+if (condition)
+{
+    foo;
+    bar;
+}
+else
+{
+    bar;
 }
 </pre>
 
