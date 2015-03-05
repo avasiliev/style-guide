@@ -2512,26 +2512,31 @@ be created with a braced initializer list, known as a
 of its use.</p>
 
 <pre>// Vector takes a braced-init-list of elements.
-vector&lt;string&gt; v{"foo", "bar"};
+std::vector&lt;std::string&gt; v{"foo", "bar"};
 
 // Basically the same, ignoring some small technicalities.
 // You may choose to use either form.
-vector&lt;string&gt; v = {"foo", "bar"};
+std::vector&lt;std::string&gt; v = {"foo", "bar"};
 
 // Usable with 'new' expressions.
-auto p = new vector&lt;string&gt;{"foo", "bar"};
+auto p = new std::vector&lt;std::string&gt;{"foo", "bar"};
 
 // A map can take a list of pairs. Nested braced-init-lists work.
-map&lt;int, string&gt; m = {{1, "one"}, {2, "2"}};
+std::map&lt;int, std::string&gt; m = {{1, "one"}, {2, "2"}};
 
 // A braced-init-list can be implicitly converted to a return type.
-vector&lt;int&gt; test_function() { return {1, 2, 3}; }
+std::vector&lt;int&gt; TestFunction()
+{
+    return {1, 2, 3};
+}
 
 // Iterate over a braced-init-list.
-for (int i : {-1, -2, -3}) {}
+for (int i : {-1, -2, -3})
+{}
 
 // Call a function using a braced-init-list.
-void TestFunction2(vector&lt;int&gt; v) {}
+void TestFunction2(vector&lt;int&gt; v)
+{}
 TestFunction2({1, 2, 3});
 </pre>
 
@@ -2539,18 +2544,25 @@ TestFunction2({1, 2, 3});
 that take <code>std::initializer_list&lt;T&gt;</code>, which is automatically
 created from <i>braced-init-list</i>:</p>
 
-<pre>class MyType {
- public:
-  // std::initializer_list references the underlying init list.
-  // It should be passed by value.
-  MyType(std::initializer_list&lt;int&gt; init_list) {
-    for (int i : init_list) append(i);
-  }
-  MyType&amp; operator=(std::initializer_list&lt;int&gt; init_list) {
-    clear();
-    for (int i : init_list) append(i);
-  }
+<pre>class MyType
+{
+public:
+    // std::initializer_list references the underlying init list.
+    // It should be passed by value.
+    MyType(std::initializer_list&lt;int&gt; init_list)
+    {
+        for (int i : init_list)
+            append(i);
+    }
+
+    MyType&amp; operator=(std::initializer_list&lt;int&gt; init_list)
+    {
+        clear();
+        for (int i : init_list)
+            append(i);
+    }
 };
+
 MyType m{2, 3, 5, 7};
 </pre>
 
@@ -2561,11 +2573,13 @@ constructors of data types, even if they do not have
 <pre>double d{1.23};
 // Calls ordinary constructor as long as MyOtherType has no
 // std::initializer_list constructor.
-class MyOtherType {
- public:
-  explicit MyOtherType(string);
-  MyOtherType(int, string);
+class MyOtherType
+{
+public:
+    explicit MyOtherType(string);
+    MyOtherType(int, string);
 };
+
 MyOtherType m = {1, "b"};
 // If the constructor is explicit, you can't use the "= {}" form.
 MyOtherType m{"b"};
