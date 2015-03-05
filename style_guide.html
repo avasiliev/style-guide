@@ -1554,71 +1554,9 @@ Never use <code>std::auto_ptr</code>. Instead, use
 <h3 id="Reference_Arguments">Reference Arguments</h3>
 
 <div class="summary">
-<p>All parameters passed by reference must be labeled
-<code>const</code>.</p>
+<p>Always prefer using references instead of raw pointers. The only
+reason to use pointers is compatibility with old C-style libraries.</p>
 </div>
-
-<div class="stylebody">
-
-<div class="definition">
-<p>In C, if a
-function needs to modify a variable, the parameter must
-use a pointer, eg <code>int foo(int *pval)</code>. In
-C++, the function can alternatively declare a reference
-parameter: <code>int foo(int &amp;val)</code>.</p>
-</div>
-
-<div class="pros">
-<p>Defining a parameter as reference avoids ugly code like
-<code>(*pval)++</code>. Necessary for some applications
-like copy constructors. Makes it clear, unlike with
-pointers, that a null pointer is not a possible
-value.</p>
-</div>
-
-<div class="cons">
-<p>References can be confusing, as they have value syntax
-but pointer semantics.</p>
-</div>
-
-<div class="decision">
-<p>Within function parameter lists all references must be
-<code>const</code>:</p>
-
-<pre>void Foo(const string &amp;in, string *out);
-</pre>
-
-<p>In fact it is a very strong convention in Google code
-that input arguments are values or <code>const</code>
-references while output arguments are pointers. Input
-parameters may be <code>const</code> pointers, but we
-never allow non-<code>const</code> reference parameters
-except when required by convention, e.g.,
-<code>swap()</code>.</p>
-
-<p>However, there are some instances where using
-<code>const T*</code> is preferable to <code>const
-T&amp;</code> for input parameters. For example:</p>
-
-<ul>
-  <li>You want to pass in a null pointer.</li>
-
-  <li>The function saves a pointer or reference to the
-  input.</li>
-</ul>
-
-<p> Remember that most of the time input
-parameters are going to be specified as <code>const
-T&amp;</code>. Using <code>const T*</code> instead
-communicates to the reader that the input is somehow
-treated differently. So if you choose <code>const
-T*</code> rather than <code>const T&amp;</code>, do so
-for a concrete reason; otherwise it will likely confuse
-readers by making them look for an explanation that
-doesn't exist.</p>
-</div>
-
-</div> 
 
 <h3 id="Rvalue_references">Rvalue References</h3>
 
