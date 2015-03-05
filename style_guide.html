@@ -2907,16 +2907,17 @@ std::string tablename;   // Bad - no underscore between the words.
 
 <h4 class="stylepoint_subsection">Class Data Members</h4>
 
-<p>Data members of classes, both static and non-static, are
+<p>Private data members of classes, both static and non-static, are
 named like ordinary nonmember variables, but with a
 trailing underscore.</p>
 
-<pre>class TableInfo {
-  ...
- private:
-  string table_name_;  // OK - underscore at end.
-  string tablename_;   // OK.
-  static Pool&lt;TableInfo&gt;* pool_;  // OK.
+<pre>
+class TableInfo
+{
+    ...
+private:
+    std::string table_name_;  // OK - underscore at end.
+    static Pool&lt;TableInfo&gt; pool_;  // OK.
 };
 </pre>
 
@@ -2926,10 +2927,11 @@ trailing underscore.</p>
 are named like ordinary nonmember variables. They do not have
 the trailing underscores that data members in classes have.</p>
 
-<pre>struct UrlTableProperties {
-  string name;
-  int num_entries;
-  static Pool&lt;UrlTableProperties&gt;* pool;
+<pre>struct UrlTableProperties
+{
+  std::string name;
+  int entries_number;
+  static Pool&lt;UrlTableProperties&gt; pool;
 };
 </pre>
 
@@ -2941,10 +2943,7 @@ versus a class.</p>
 <h4 class="stylepoint_subsection">Global Variables</h4>
 
 <p>There are no special requirements for global
-variables, which should be rare in any case, but if you
-use one, consider prefixing it with <code>g_</code> or
-some other marker to easily distinguish it from local
-variables.</p>
+variables, which should be rare in any case.</p>
 
 </div> 
 
