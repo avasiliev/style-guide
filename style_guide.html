@@ -3188,7 +3188,7 @@ Any textual data must be placed into external [configuration] files.</p>
 <h3 id="Spaces_vs._Tabs">Spaces vs. Tabs</h3>
 
 <div class="summary">
-<p>Use only spaces, and indent 2 spaces at a time.</p>
+<p>Use only spaces, and indent 4 spaces at a time.</p>
 </div>
 
 <div class="stylebody">
@@ -3196,6 +3196,36 @@ Any textual data must be placed into external [configuration] files.</p>
 <p>We use spaces for indentation. Do not use tabs in your
 code. You should set your editor to emit spaces when you
 hit the tab key.</p>
+
+<p>
+There are some cases when double indent is necessary to distinguish line break
+from nested code block. For example:
+</p>
+
+<pre>
+void ConnectToFileServer(
+        const std::string&amp; server_name,
+        int port)
+{
+    ...
+}
+</pre>
+
+<p>The necessary exception is initialization block in constructor.
+Initialization commands are semantically not distinguishable from
+usual commands placed in constructor body.
+</p>
+
+<pre>
+ExternalEmployee::ExternalEmployee(
+        const std::string&amp; name,
+        const int age)
+    : name_(name)
+    , age_(age)
+{
+    Init();
+}
+</pre>
 
 </div> 
 
