@@ -2399,7 +2399,7 @@ initialize it. You can use <code>auto</code> either to
 initialize a variable by copying, or to bind a
 reference.</p>
 
-<pre>vector&lt;string&gt; v;
+<pre>std::vector&lt;std::string&gt; v;
 ...
 auto s1 = v[0];  // Makes a copy of v[0].
 const auto&amp; s2 = v[0];  // s2 is a reference to v[0].
@@ -2411,7 +2411,7 @@ const auto&amp; s2 = v[0];  // s2 is a reference to v[0].
 especially when they involve templates or namespaces. In
 a statement like:</p>
 
-<pre>sparse_hash_map&lt;string, int&gt;::iterator iter = m.find(val);
+<pre>sparse_hash_map&lt;std::string, int&gt;::iterator iter = m.find(val);
 </pre>
 </div>
 
