@@ -3198,7 +3198,7 @@ code. You should set your editor to emit spaces when you
 hit the tab key.</p>
 
 <p>
-There are some cases when double indent is necessary to distinguish line break
+There are some cases when double indent is used to distinguish line break
 from nested code block. For example:
 </p>
 
@@ -3211,9 +3211,9 @@ void ConnectToFileServer(
 }
 </pre>
 
-<p>The necessary exception is initialization block in constructor.
+<p>The necessary exception is an initialization block in constructor.
 Initialization commands are semantically not distinguishable from
-usual commands placed in constructor body.
+usual commands placed in constructor body, so they are also indented once.
 </p>
 
 <pre>
@@ -3223,7 +3223,7 @@ ExternalEmployee::ExternalEmployee(
     : name_(name)
     , age_(age)
 {
-    Init();
+    salary_ = LoadSalary();
 }
 </pre>
 
