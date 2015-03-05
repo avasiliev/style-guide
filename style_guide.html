@@ -3148,55 +3148,25 @@ everyone's code easily.</p>
 <h3 id="Line_Length">Line Length</h3>
 
 <div class="summary">
-<p>Each line of text in your code should be at most 80
+<p>Each line of text in your code should be at most 100
 characters long.</p>
 </div>
 
 <div class="stylebody">
 
+<p class="note">If a string literal is longer than 100 characters,
+it can be splitted into parts like this:</p>
 
-
- <p>We recognize that this rule is
-controversial, but so much existing code already adheres
-to it, and we feel that consistency is important.</p>
-
-<div class="pros">
-<p>Those who favor  this rule
-argue that it is rude to force them to resize
-their windows and there is no need for anything longer.
-Some folks are used to having several code windows
-side-by-side, and thus don't have room to widen their
-windows in any case. People set up their work environment
-assuming a particular maximum window width, and 80
-columns has been the traditional standard. Why change
-it?</p>
-</div>
-
-<div class="cons">
-<p>Proponents of change argue that a wider line can make
-code more readable. The 80-column limit is an hidebound
-throwback to 1960s mainframes;  modern equipment has wide screens that
-can easily show longer lines.</p>
-</div>
-
-<div class="decision">
-<p> 80 characters is the maximum.</p>
-
-<p class="exception">If a comment line contains an example
-command or a literal URL longer than 80 characters, that
-line may be longer than 80 characters for ease of cut and
-paste.</p>
-
-<p class="exception">A raw-string literal may have content
-that exceeds 80 characters.  Except for test code, such literals
-should appear near top of a file.</p>
+<pre>
+    const std::string a =
+            "This string is sooooooooooo"
+            "loooooooooong!..";
+</pre>
 
 <p class="exception">An <code>#include</code> statement with a
 long path may exceed 80 columns.</p>
 
 </div>
-
-</div> 
 
 <h3 id="Non-ASCII_Characters">Non-ASCII Characters</h3>
 
