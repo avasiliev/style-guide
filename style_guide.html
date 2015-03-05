@@ -2956,55 +2956,17 @@ variables, which should be rare in any case.</p>
 <h3 id="Function_Names">Function Names</h3>
 
 <div class="summary">
-<p>Regular functions have mixed case; accessors and mutators
-match the name of the variable:
+<p>All functions and members have mixed case:
 <code>MyExcitingFunction()</code>,
 <code>MyExcitingMethod()</code>,
-<code>my_exciting_member_variable()</code>,
-<code>set_my_exciting_member_variable()</code>.</p>
+<code>GetMyExcitingMemberVariable()</code>,
+<code>SetMyExcitingMemberVariable()</code>.</p>
 </div>
 
 <div class="stylebody">
 
-<h4 class="stylepoint_subsection">Regular Functions</h4>
-
 <p>Functions should start with a capital letter and have
 a capital letter for each new word. No underscores.</p>
-
-<p>If your function crashes upon an error, you should
-append OrDie to the function name. This only applies to
-functions which could be used by production code and to
-errors that are reasonably likely to occur during normal
-operation.</p>
-
-            <pre>AddTableEntry()
-DeleteUrl()
-OpenFileOrDie()
-</pre>
-
-<h4 class="stylepoint_subsection">Accessors and Mutators</h4>
-
-<p>Accessors and mutators (get and set functions) should
-match the name of the variable they are getting and
-setting. This shows an excerpt of a class whose instance
-variable is <code>num_entries_</code>.</p>
-
-<pre>class MyClass {
- public:
-  ...
-  int num_entries() const { return num_entries_; }
-  void set_num_entries(int num_entries) { num_entries_ = num_entries; }
-
- private:
-  int num_entries_;
-};
-</pre>
-
-<p>You may also use lowercase letters for other very
-short inlined functions. For example if a function were
-so cheap you would not cache the value if you were
-calling it in a loop, then lowercase naming would be
-acceptable.</p>
 
 </div> 
 
