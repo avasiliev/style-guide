@@ -3433,18 +3433,27 @@ pair&lt;int, int&gt; p{foo, bar};
 
 // When you have to wrap.
 SomeFunction(
-    {"assume a zero-length name before {"},
-    some_other_function_parameter);
+        {"assume a zero-length name before {"},
+        some_other_function_parameter);
 SomeType variable{
-    some, other, values,
-    {"assume a zero-length name before {"},
-    SomeOtherType{
-        "Very long string requiring the surrounding breaks.",
-        some, other values},
-    SomeOtherType{"Slightly shorter string",
-                  some, other, values}};
+        some,
+        other,
+        values,
+        {"assume a zero-length name before {"},
+        SomeOtherType{
+                "Very long string requiring the surrounding breaks.",
+                some,
+                other
+                values},
+        SomeOtherType{
+                "Slightly shorter string",
+                some,
+                other,
+                values}};
+
 SomeType variable{
-    "This is too long to fit all in one line"};
+        "This is too long to fit all in one line"};
+
 MyType m = {  // Here, you could also break before {.
     superlongvariablename1,
     superlongvariablename2,
