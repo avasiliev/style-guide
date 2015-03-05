@@ -3241,31 +3241,46 @@ function call.</p>
 <div class="stylebody">
 
 <p>Functions look like this:</p>
-
-
-<pre>ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) {
-  DoSomething();
-  ...
+<pre>ReturnType ClassName::FunctionName(Type par_name1, Type par_name2)
+{
+    DoSomething();
+    ...
 }
 </pre>
 
 <p>If you have too much text to fit on one line:</p>
-
-<pre>ReturnType ClassName::ReallyLongFunctionName(Type par_name1, Type par_name2,
-                                             Type par_name3) {
-  DoSomething();
-  ...
+<pre class="badcode">
+ReturnType ClassName::ReallyLongFunctionName(
+        Type arg_name1,
+        Type arg_name2,
+        Type arg_name3)
+{
+    DoSomething();
+    ...
 }
 </pre>
 
-<p>or if you cannot fit even the first parameter:</p>
+<p>not:</p>
+<pre class="badcode">
+ReturnType ClassName::ReallyLongFunctionName(Type arg_name1, Type arg_name2,
+                                             Type arg_name3)
+{
+    DoSomething();
+    ...
+}
+</pre>
 
-<pre>ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
-    Type par_name1,  // 4 space indent
-    Type par_name2,
-    Type par_name3) {
-  DoSomething();  // 2 space indent
-  ...
+<p>Even if the first parameter fits in line, it should be placed
+on a separate string</p>
+
+<pre class="badcode">
+// Incorrect:
+X A::GetB(Type arg_name1,
+        Type par_name2,
+        Type par_name3)
+{
+    DoSomething();
+    ...
 }
 </pre>
 
@@ -3274,9 +3289,6 @@ function call.</p>
 <ul>
   <li>If you cannot fit the return type and the function
   name on a single line, break between them.</li>
-
-  <li>If you break after the return type of a function
-  declaration or definition, do not indent.</li>
 
   <li>The open parenthesis is always on the same line as
   the function name.</li>
@@ -3287,46 +3299,45 @@ function call.</p>
   <li>There is never a space between the parentheses and
   the parameters.</li>
 
-  <li>The open curly brace is always at the end of the
-  same line as the last parameter.</li>
+  <li>The open curly brace is always on the
+  next line after the last parameter.</li>
 
   <li>The close curly brace is either on the last line by
-  itself or (if other style rules permit) on the same
+  itself or (if the function body is empty) on the same
   line as the open curly brace.</li>
-
-  <li>There should be a space between the close
-  parenthesis and the open curly brace.</li>
 
   <li>All parameters should be named, with identical
   names in the declaration and implementation.</li>
 
-  <li>All parameters should be aligned if possible.</li>
+  <li>Default indentation is 4 spaces.</li>
 
-  <li>Default indentation is 2 spaces.</li>
-
-  <li>Wrapped parameters have a 4 space indent.</li>
+  <li>Wrapped parameters have a 8 space indent.</li>
 </ul>
 
 <p>If some parameters are unused, comment out the
 variable name in the function definition:</p>
 
 <pre>// Always have named parameters in interfaces.
-class Shape {
- public:
-  virtual void Rotate(double radians) = 0;
+class Shape
+{
+public:
+    virtual void Rotate(double radians) = 0;
 };
 
 // Always have named parameters in the declaration.
-class Circle : public Shape {
- public:
-  virtual void Rotate(double radians);
+class Circle : public Shape
+{
+public:
+    virtual void Rotate(double radians);
 };
 
 // Comment out unused named parameters in definitions.
-void Circle::Rotate(double /*radians*/) {}
+void Circle::Rotate(double /*radians*/)
+{}
 </pre>
 
-<pre class="badcode">// Bad - if someone wants to implement later, it's not clear what the
+<pre class="badcode">
+// Bad - if someone wants to implement later, it's not clear what the
 // variable means.
 void Circle::Rotate(double) {}
 </pre>
