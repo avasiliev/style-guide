@@ -1054,11 +1054,16 @@ forward work to one of the class's other constructors,
 using a special variant of the initialization list
 syntax. For example:</p>
 
-<pre>X::X(const string&amp; name) : name_(name) {
-  ...
+<pre>
+X::X(const string&amp; name)
+    : name_(name)
+{
+    ...
 }
 
-X::X() : X("") { }
+X::X()
+    : X("")
+{}
 </pre>
 
 <p>Inheriting constructors allow a derived class to have
