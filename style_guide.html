@@ -3171,46 +3171,14 @@ long path may exceed 80 columns.</p>
 <h3 id="Non-ASCII_Characters">Non-ASCII Characters</h3>
 
 <div class="summary">
-<p>Non-ASCII characters should be rare, and must use UTF-8
-formatting.</p>
+<p>Non-ASCII characters in source files are forbidden.</p>
 </div>
 
 <div class="stylebody">
 
 <p>You shouldn't hard-code user-facing text in source,
-even English, so use of non-ASCII characters should be
-rare. However, in certain cases it is appropriate to
-include such words in your code. For example, if your
-code parses data files from foreign sources, it may be
-appropriate to hard-code the non-ASCII string(s) used in
-those data files as delimiters. More commonly, unittest
-code (which does not  need to be localized) might
-contain non-ASCII strings. In such cases, you should use
-UTF-8, since that is  an encoding
-understood by most tools able to handle more than just
-ASCII.</p>
-
-<p>Hex encoding is also OK, and encouraged where it
-enhances readability &#8212; for example,
-<code>"\xEF\xBB\xBF"</code>, or, even more simply,
-<code>u8"\uFEFF"</code>, is the Unicode zero-width
-no-break space character, which would be invisible if
-included in the source as straight UTF-8.</p>
-
-<p>Use the <code>u8</code> prefix
-to guarantee that a string literal containing
-<code>\uXXXX</code> escape sequences is encoded as UTF-8.
-Do not use it for strings containing non-ASCII characters
-encoded as UTF-8, because that will produce incorrect
-output if the compiler does not interpret the source file
-as UTF-8. </p>
-
-<p>You shouldn't use the C++11 <code>char16_t</code> and
-<code>char32_t</code> character types, since they're for
-non-UTF-8 text. For similar reasons you also shouldn't
-use <code>wchar_t</code> (unless you're writing code that
-interacts with the Windows API, which uses
-<code>wchar_t</code> extensively).</p>
+even English, so use of non-ASCII characters is not necessary.
+Any textual data must be placed into external [configuration] files.</p>
 
 </div> 
 
