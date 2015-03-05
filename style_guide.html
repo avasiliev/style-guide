@@ -3062,7 +3062,8 @@ self-documenting by using constants. For example,
 compare:</p>
 
 <pre class="badcode">
-const bool success = CalculateSomething(interesting_value,
+const bool success = CalculateSomething(
+        interesting_value,
         10,
         false,
         nullptr);  // What are these arguments??
@@ -3071,7 +3072,8 @@ const bool success = CalculateSomething(interesting_value,
 <p>versus:</p>
 
 <pre>
-const bool success = CalculateSomething(interesting_value,
+const bool success = CalculateSomething(
+        interesting_value,
         10,       // Default base value.
         false,    // Not the first time we're calling this.
         nullptr); // No callback.
