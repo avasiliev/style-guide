@@ -1073,17 +1073,19 @@ instead of having to redeclare them. This is especially
 useful if the base has multiple constructors. For
 example:</p>
 
-<pre>class Base {
- public:
-  Base();
-  Base(int n);
-  Base(const string&amp; s);
-  ...
+<pre>class Base
+{
+public:
+    Base();
+    Base(int n);
+    Base(const string&amp; s);
+    ...
 };
 
-class Derived : public Base {
- public:
-  using Base::Base;  // Base's constructors are redeclared here.
+class Derived : public Base
+{
+public:
+    using Base::Base;  // Base's constructors are redeclared here.
 };
 </pre>
 
