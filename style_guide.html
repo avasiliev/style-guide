@@ -78,8 +78,7 @@ the readability, size and performance of your code.</p>
 <p>The following rules will guide you through the various
 pitfalls of using header files.</p>
 
-<a id="The_-inl.h_Files"></a>
-<h3 id="Self_contained_Headers">Self-contained Headers</h3>
+<h3 id="Definition_and_Declaration">Definition and Declaration</h3>
 
 <div class="summary">
 <p>
@@ -3846,9 +3845,9 @@ local pattern to follow, prefer "_".</p>
 </ul>
 
 <p>C++ files should end in <code>.cpp</code> and header files should end in
-<code>.h</code>. Files that rely on being textually included at specific points
-should end in <code>.inc</code> (see also the section on
-<a href="#Self_contained_Headers">self-contained headers</a>).</p>
+<code>.h</code>. Files containing template definitions
+should end in <code>-inl.h</code> (see also the section on
+<a href="#Definition_and_Declaration">definition and declaration</a>).</p>
 
 <p>Do not use filenames that already exist in
 <code>/usr/include</code>, such as <code>db.h</code>.</p>
