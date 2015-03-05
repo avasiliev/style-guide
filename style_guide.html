@@ -3361,10 +3361,15 @@ auto add_to_x = [&amp;x](int n) { x += n; };
 <p>Short lambdas may be written inline as function arguments.</p>
 <pre>std::set&lt;int&gt; blacklist = {7, 8, 9};
 std::vector&lt;int&gt; digits = {3, 9, 1, 8, 4, 7, 1};
-digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i) {
-               return blacklist.find(i) != blacklist.end();
-             }),
-             digits.end());
+digits.erase(
+        std::remove_if(
+                digits.begin(),
+                digits.end(),
+                [&amp;blacklist](int i)
+                {
+                    return blacklist.find(i) != blacklist.end();
+                }),
+        digits.end());
 </pre>
 
 </div> 
