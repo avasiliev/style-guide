@@ -2872,7 +2872,7 @@ class UrlTableTester { ...
 struct UrlTableProperties { ...
 
 // typedefs
-typedef hash_map&lt;UrlTableProperties *, string&gt; PropertiesMap;
+typedef hash_map&lt;UrlTableProperties, std::string&gt; PropertiesMap;
 
 // enums
 enum UrlTableErrors { ...
@@ -2886,8 +2886,8 @@ enum UrlTableErrors { ...
 <p>The names of variables and data members are all lowercase, with
 underscores between words. Data members of classes (but not structs)
 additionally have trailing underscores. For instance:
-<code>a_local_variable</code>, <code>a_struct_data_member</code>,
-<code>a_class_data_member_</code>.</p>
+<code>local_variable</code>, <code>struct_data_member</code>,
+<code>class_data_member_</code>.</p>
 </div>
 
 <div class="stylebody">
@@ -2896,11 +2896,13 @@ additionally have trailing underscores. For instance:
 
 <p>For example:</p>
 
-<pre>string table_name;  // OK - uses underscore.
-string tablename;   // OK - all lowercase.
+<pre>
+std::string table_name;  // OK - uses underscore.
 </pre>
 
-<pre class="badcode">string tableName;   // Bad - mixed case.
+<pre class="badcode">
+std::string tableName;   // Bad - mixed case.
+std::string tablename;   // Bad - no underscore between the words.
 </pre>
 
 <h4 class="stylepoint_subsection">Class Data Members</h4>
