@@ -1309,18 +1309,12 @@ Types</a> and <a href="#Function_Overloading">Function Overloading</a>.</p>
 
 <div class="summary">
 <p> Make data members <code>private</code>, and provide access
-to them through accessor functions as needed (for technical
-reasons, we allow data members of a test fixture class to
-be <code>protected</code> when using
-
-
-<a href="http://code.google.com/p/googletest/">Google
-Test</a>). Typically a variable would be called
+to them through accessor functions as needed.
+Typically a variable would be called
 <code>foo_</code> and the accessor function
-<code>foo()</code>. You may also want a mutator function
-<code>set_foo()</code>. Exception: <code>static
-const</code> data members (typically called
-<code>kFoo</code>) need not be <code>private</code>.</p>
+<code>GetFoo()</code>. You may also want a mutator function
+<code>SetFoo()</code>. Exception: <code>static
+const</code> data members need not be <code>private</code>.</p>
 </div>
 
 <div class="stylebody">
