@@ -748,7 +748,8 @@ and <code>for</code> statements should normally be declared
 within those statements, so that such variables are confined
 to those scopes.  E.g.:</p>
 
-<pre>while (const char* p = strchr(str, '/')) str = p + 1;
+<pre>while (const char* p = strchr(str, '/'))
+    str = p + 1;
 </pre>
 
 <p>There is one caveat: if the variable is an object, its
@@ -757,9 +758,10 @@ created, and its destructor is invoked every time it goes
 out of scope.</p>
 
 <pre class="badcode">// Inefficient implementation:
-for (int i = 0; i &lt; 1000000; ++i) {
-  Foo f;  // My ctor and dtor get called 1000000 times each.
-  f.DoSomething(i);
+for (int i = 0; i &lt; 1000000; ++i)
+{
+    Foo f;  // My ctor and dtor get called 1000000 times each.
+    f.DoSomething(i);
 }
 </pre>
 
@@ -767,8 +769,9 @@ for (int i = 0; i &lt; 1000000; ++i) {
 used in a loop outside that loop:</p>
 
 <pre>Foo f;  // My ctor and dtor get called once each.
-for (int i = 0; i &lt; 1000000; ++i) {
-  f.DoSomething(i);
+for (int i = 0; i &lt; 1000000; ++i)
+{
+    f.DoSomething(i);
 }
 </pre>
 
