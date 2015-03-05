@@ -462,11 +462,12 @@ given examples.</p>
 // This function is guaranteed not to generate a colliding symbol
 // with other symbols at link time, and is only visible to
 // callers in this .cpp file.
-bool UpdateInternals(Frobber* f, int newval) {
-  ...
+bool UpdateInternals(Frobber* f, int newval)
+{
+    ...
 }
 
-}  // namespace
+} // anonymous namespace
 </pre>
 
   <p>However, file-scope declarations that are
@@ -486,35 +487,36 @@ bool UpdateInternals(Frobber* f, int newval) {
 
 <ul>
   <li>
-  <p>Namespaces wrap the entire source file after
-  includes,  
-  <a href="http://google-gflags.googlecode.com/">
-  gflags</a> definitions/declarations, and
+  <p>Namespaces wrap the entire source file after includes and
   forward declarations of classes from other namespaces:</p>
 
 <pre>// In the .h file
-namespace mynamespace {
+namespace mynamespace
+{
 
 // All declarations are within the namespace scope.
 // Notice the lack of indentation.
-class MyClass {
- public:
-  ...
-  void Foo();
+class MyClass
+{
+public:
+    ...
+    void Foo();
 };
 
-}  // namespace mynamespace
+} // namespace mynamespace
 </pre>
 
 <pre>// In the .cpp file
-namespace mynamespace {
+namespace mynamespace
+{
 
 // Definition of functions is within scope of the namespace.
-void MyClass::Foo() {
-  ...
+void MyClass::Foo()
+{
+    ...
 }
 
-}  // namespace mynamespace
+} // namespace mynamespace
 </pre>
 
   <p>The typical <code>.cpp</code> file might have more
@@ -527,13 +529,14 @@ void MyClass::Foo() {
 DEFINE_bool(someflag, false, "dummy flag");
 
 class C;  // Forward declaration of class C in the global namespace.
-namespace a { class A; }  // Forward declaration of a::A.
+namespace a {
+    class A;
+} // Forward declaration of a::A.
 
-namespace b {
-
-...code for b...         // Code goes against the left margin.
-
-}  // namespace b
+namespace b
+{
+    ...code for b...         // Code goes against the left margin.
+} // namespace b
 </pre>
   </li>
 
@@ -580,12 +583,13 @@ namespace librarian {
 // within a project.
 namespace pd_s = ::pipeline_diagnostics::sidetable;
 
-inline void my_inline_function() {
-  // namespace alias local to a function (or method).
-  namespace fbz = ::foo::bar::baz;
-  ...
+void my_function()
+{
+    // namespace alias local to a function (or method).
+    namespace fbz = ::foo::bar::baz;
+    ...
 }
-}  // namespace librarian
+} // namespace librarian
 </pre>
 
   <p>Note that an alias in a .h file is visible to
@@ -598,9 +602,6 @@ inline void my_inline_function() {
 
   <li>Do not use inline namespaces.</li>
 </ul>
-
- 
-
  
 
  
