@@ -1040,7 +1040,7 @@ public:
     ...
 };
 
-class Derived : public Base
+class Derived: public Base
 {
 public:
     using Base::Base;  // Base's constructors are redeclared here.
@@ -1690,10 +1690,10 @@ are used to simulate variable-length argument lists.</p>
 
 
   <pre>// Support up to 4 params by using a default empty AlphaNum.
-string StrCat(const AlphaNum &amp;a,
-              const AlphaNum &amp;b = gEmptyAlphaNum,
-              const AlphaNum &amp;c = gEmptyAlphaNum,
-              const AlphaNum &amp;d = gEmptyAlphaNum);
+std::string StrCat(const AlphaNum&amp; a,
+              const AlphaNum&amp; b = empty_alpha_num,
+              const AlphaNum&amp; c = empty_alpha_num,
+              const AlphaNum&amp; d = empty_alpha_num);
 </pre>
 </div>
 
@@ -1827,11 +1827,12 @@ relationship between objects and their mocks.</p>
 objects. Consider</p>
 
 <pre>bool Base::Equal(Base* other) = 0;
-bool Derived::Equal(Base* other) {
-  Derived* that = dynamic_cast&lt;Derived*&gt;(other);
-  if (that == NULL)
-    return false;
-  ...
+bool Derived::Equal(Base* other)
+{
+    Derived* that = dynamic_cast&lt;Derived*&gt;(other);
+    if (that == nullptr)
+        return false;
+    ...
 }
 </pre>
 </div>
@@ -2332,9 +2333,11 @@ memset(&amp;data, 0, sizeof(data));
 <pre class="badcode">memset(&amp;data, 0, sizeof(Struct));
 </pre>
 
-<pre>if (raw_size &lt; sizeof(int)) {
-  LOG(ERROR) &lt;&lt; "compressed record not big enough for count: " &lt;&lt; raw_size;
-  return false;
+<pre>
+if (raw_size &lt; sizeof(int))
+{
+    LOG(ERROR) &lt;&lt; "compressed record not big enough for count: " &lt;&lt; raw_size;
+    return false;
 }
 </pre>
 
