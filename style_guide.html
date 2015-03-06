@@ -3856,53 +3856,53 @@ beginning of the line.</p>
 
 <div class="summary">
 <p>Sections in <code>public</code>, <code>protected</code> and
-<code>private</code> order, each indented one space.</p>
+<code>private</code> order, each unindented.</p>
 </div>
 
 <div class="stylebody">
 
-<p>The basic format for a class declaration (lacking the
-comments, see <a href="#Class_Comments">Class
-Comments</a> for a discussion of what comments are
-needed) is:</p>
+<p>The basic format for a class declaration:</p>
 
-<pre>class MyClass : public OtherClass {
- public:      // Note the 1 space indent!
-  MyClass();  // Regular 2 space indent.
-  explicit MyClass(int var);
-  ~MyClass() {}
+<pre>
+class MyClass
+    : public OtherClass         // Note: colon precedes base class
+    , virtual private SomeClass // Note: comma precedes base class
+{
+public:         // No indent
+    MyClass();  // Regular 4 space indent.
+    explicit MyClass(int var);
+    ~MyClass();
 
-  void SomeFunction();
-  void SomeFunctionThatDoesNothing() {
-  }
+    void SomeFunction();
+    void SomeOtherFunction() const;
 
-  void set_some_var(int var) { some_var_ = var; }
-  int some_var() const { return some_var_; }
+    void SetSomeVar(int var);
+    int GetSomeVar() const;
 
- private:
-  bool SomeInternalFunction();
+private:
+    bool SomeInternalFunction();
 
-  int some_var_;
-  int some_other_var_;
+    int some_var_;
+    int some_other_var_;
 };
 </pre>
 
 <p>Things to note:</p>
 
 <ul>
-  <li>Any base class name should be on the same line as
-  the subclass name, subject to the 80-column limit.</li>
+  <li>If there is one base class, it can be placed
+    on the same line as the class being declared.
+    If there are more base classes, each should be placed
+    on a separate line.</li>
 
   <li>The <code>public:</code>, <code>protected:</code>,
-  and <code>private:</code> keywords should be indented
-  one space.</li>
+  and <code>private:</code> keywords should not be indented.</li>
 
   <li>Except for the first instance, these keywords
   should be preceded by a blank line. This rule is
   optional in small classes.</li>
 
-  <li>Do not leave a blank line after these
-  keywords.</li>
+  <li>Do not leave a blank line after these keywords.</li>
 
   <li>The <code>public</code> section should be first,
   followed by the <code>protected</code> and finally the
