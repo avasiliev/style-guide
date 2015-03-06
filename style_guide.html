@@ -3625,13 +3625,21 @@ They are required for loops with multiple lines.</p>
 
 <pre>
 for (int i = 0; i &lt; some_number; ++i)
-    std::cout &lt;&lt; "I love you\n" &lt;&lt; std::endl;  // 4 space indent
+    std::cout &lt;&lt; "I love you" &lt;&lt; std::endl;  // 4 space indent
 
 for (int i = 0; i &lt; some_number; ++i)
 {
     std::cout &lt;&lt; "OK!" &lt;&lt; std::endl;
     std::cout &lt;&lt; "I take it back" &lt;&lt; std::endl;
 }
+</pre>
+
+<pre class="badcode">
+// Incorrect:
+for (int i = 0; i &lt; some_number; ++i)
+    std::cout &lt;&lt; "I love you, "
+            &lt;&lt; "my dear!"
+            &lt;&lt; std::endl;
 </pre>
 
 
