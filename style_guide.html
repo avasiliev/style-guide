@@ -3950,31 +3950,37 @@ MyClass::MyClass(int var)
 <p><a href="#Namespaces">Namespaces</a> do not add an
 extra level of indentation. For example, use:</p>
 
-<pre>namespace {
+<pre>
+namespace
+{
 
-void foo() {  // Correct.  No extra indentation within namespace.
-  ...
+void foo()
+{  // Correct.  No extra indentation within namespace.
+    ...
 }
 
-}  // namespace
+} // anonymous namespace
 </pre>
 
 <p>Do not indent within a namespace:</p>
 
-<pre class="badcode">namespace {
+<pre class="badcode">
+namespace {
 
-  // Wrong.  Indented when it should not be.
-  void foo() {
-    ...
-  }
+    // Wrong.  Indented when it should not be.
+    void foo()
+    {
+        ...
+    }
 
-}  // namespace
+} // anonymous namespace
 </pre>
 
 <p>When declaring nested namespaces, put each namespace
 on its own line.</p>
 
-<pre>namespace foo {
+<pre>
+namespace foo {
 namespace bar {
 </pre>
 
