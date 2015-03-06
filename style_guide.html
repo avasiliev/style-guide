@@ -3698,13 +3698,13 @@ place the asterisk adjacent to the type:</p>
 <pre>
 // These are fine, space following.
 char* c;
-const string&amp; str;
+const string&amp; str = ...;
 </pre>
 
 <pre class="badcode">
 char * c;  // Bad - spaces on both sides of *
-const string &amp; str;  // Bad - spaces on both sides of &amp;
-const string &amp;str;   // Bad - &amp; is adjacent to variable name
+const string &amp; str = ...;  // Bad - spaces on both sides of &amp;
+const string &amp;str = ...;   // Bad - &amp; is adjacent to variable name
 </pre>
 
 </div> 
