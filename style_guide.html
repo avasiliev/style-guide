@@ -1602,10 +1602,11 @@ which overload is being called.</p>
 string&amp;</code> and overload it with another that
 takes <code>const char*</code>.</p>
 
-<pre>class MyClass {
- public:
-  void Analyze(const string &amp;text);
-  void Analyze(const char *text, size_t textlen);
+<pre>class MyClass
+{
+public:
+    void Analyze(const string &amp;text);
+    void Analyze(const char* text, size_t textlen);
 };
 </pre>
 </div>
