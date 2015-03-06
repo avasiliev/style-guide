@@ -3792,24 +3792,26 @@ of indented code, the directives should start at the
 beginning of the line.</p>
 
 <pre>// Good - directives at beginning of line
-  if (lopsided_score) {
+    if (lopsided_score)
+    {
 #if DISASTER_PENDING      // Correct -- Starts at beginning of line
-    DropEverything();
+        DropEverything();
 # if NOTIFY               // OK but not required -- Spaces after #
-    NotifyClient();
+        NotifyClient();
 # endif
 #endif
-    BackToNormal();
-  }
+        BackToNormal();
+    }
 </pre>
 
 <pre class="badcode">// Bad - indented directives
-  if (lopsided_score) {
-    #if DISASTER_PENDING  // Wrong!  The "#if" should be at beginning of line
-    DropEverything();
-    #endif                // Wrong!  Do not indent "#endif"
-    BackToNormal();
-  }
+    if (lopsided_score)
+    {
+        #if DISASTER_PENDING  // Wrong!  The "#if" should be at beginning of line
+        DropEverything();
+        #endif                // Wrong!  Do not indent "#endif"
+        BackToNormal();
+    }
 </pre>
 
 </div> 
