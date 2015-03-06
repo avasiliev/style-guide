@@ -3918,7 +3918,7 @@ private:
 <h3 id="Constructor_Initializer_Lists">Constructor Initializer Lists</h3>
 
 <div class="summary">
-<p>Constructor initializer lists can be placed each on a separate line.</p>
+<p>Constructor initializer lists should be placed each on a separate line.</p>
 </div>
 
 <div class="stylebody">
@@ -3997,8 +3997,7 @@ trailing whitespace at the end of a line.</p>
 
 <h4 class="stylepoint_subsection">General</h4>
 
-<pre>void f(bool b) {  // Open braces should always have a space before them.
-  ...
+<pre>
 int i = 0;  // Semicolons usually have no space before them.
 // Spaces inside braces for braced-init-list are optional.  If you use them,
 // put them on both sides!
@@ -4006,13 +4005,16 @@ int x[] = { 0 };
 int x[] = {0};
 
 // Spaces around the colon in inheritance and initializer lists.
-class Foo : public Bar {
- public:
-  // For inline function implementations, put spaces between the braces
-  // and the implementation itself.
-  Foo(int b) : Bar(), baz_(b) {}  // No spaces inside empty braces.
-  void Reset() { baz_ = 0; }  // Spaces separating braces from implementation.
-  ...
+class Foo : public Bar
+{
+    ...
+};
+
+
+Foo::Foo(int b)
+    : Bar()  // No spaces inside empty braces.
+    , baz_(b)
+{}           // No spaces inside empty braces.
 </pre>
 
 <p>Adding trailing whitespace can cause extra work for
@@ -4020,8 +4022,7 @@ others editing the same file, when they merge, as can
 removing existing trailing whitespace. So: Don't
 introduce trailing whitespace. Remove it if you're
 already changing that line, or do it in a separate
-clean-up 
-operation (preferably when no-one
+clean-up operation (preferably when no-one
 else is working on the file).</p>
 
 <h4 class="stylepoint_subsection">Loops and Conditionals</h4>
