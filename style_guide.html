@@ -4033,12 +4033,15 @@ if (x &amp;&amp; !y)
 std::vector&lt;std::string&gt; x;
 y = static_cast&lt;char*&gt;(x);
 
-// Spaces between type and pointer are OK, but be consistent.
-vector&lt;char *&gt; x;
 set&lt;list&lt;string&gt;&gt; x;        // Permitted in C++11 code.
-set&lt;list&lt;string&gt; &gt; x;       // C++03 required a space in &gt; &gt;.
+set&lt;list&lt;string&gt; &gt; x;       // Allowed only in C++03 sources.
+</pre>
 
-// You may optionally use symmetric spacing in &lt; &lt;.
+<pre class="badcode">
+// Spaces between type and pointer are disallowed
+vector&lt;char *&gt; x;
+
+// You may not use symmetric spacing in &lt; &lt;.
 set&lt; list&lt;string&gt; &gt; x;
 </pre>
 
