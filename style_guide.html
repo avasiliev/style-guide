@@ -4027,30 +4027,20 @@ else is working on the file).</p>
 
 <h4 class="stylepoint_subsection">Loops and Conditionals</h4>
 
-<pre>if (b) {          // Space after the keyword in conditions and loops.
-} else {          // Spaces around else.
-}
-while (test) {}   // There is usually no space inside parentheses.
-switch (i) {
-for (int i = 0; i &lt; 5; ++i) {
-// Loops and conditions may have spaces inside parentheses, but this
-// is rare.  Be consistent.
-switch ( i ) {
-if ( test ) {
-for ( int i = 0; i &lt; 5; ++i ) {
-// For loops always have a space after the semicolon.  They may have a space
-// before the semicolon, but this is rare.
-for ( ; i &lt; 5 ; ++i) {
-  ...
+<pre>
+while (test)
+{}   // There is usually no space inside parentheses.
 
 // Range-based for loops always have a space before and after the colon.
-for (auto x : counts) {
-  ...
-}
-switch (i) {
-  case 1:         // No space before colon in a switch case.
+for (auto x : counts)
+{
     ...
-  case 2: break;  // Use a space after a colon if there's code after it.
+}
+
+switch (i)
+{
+case 1:         // No space before colon in a switch case.
+    ...
 </pre>
 
 <h4 class="stylepoint_subsection">Operators</h4>
@@ -4076,7 +4066,7 @@ if (x &amp;&amp; !y)
 
 <pre>// No spaces inside the angle brackets (&lt; and &gt;), before
 // &lt;, or between &gt;( in a cast
-vector&lt;string&gt; x;
+std::vector&lt;std::string&gt; x;
 y = static_cast&lt;char*&gt;(x);
 
 // Spaces between type and pointer are OK, but be consistent.
