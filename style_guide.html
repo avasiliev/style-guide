@@ -370,13 +370,13 @@ example:</p>
 
 <pre>namespace X {
 inline namespace Y {
-  void foo();
+  void Foo();
 }
 }
 </pre>
 
-<p>The expressions <code>X::Y::foo()</code> and
-<code>X::foo()</code> are interchangeable. Inline
+<p>The expressions <code>X::Y::Foo()</code> and
+<code>X::Foo()</code> are interchangeable. Inline
 namespaces are primarily intended for ABI compatibility
 across versions.</p>
 </div>
@@ -1689,11 +1689,11 @@ constructors because it's impossible to take their address.</p>
 are used to simulate variable-length argument lists.</p>
 
 
-  <pre>// Support up to 4 params by using a default empty AlphaNum.
+<pre>// Support up to 4 params by using a default empty AlphaNum.
 std::string StrCat(const AlphaNum&amp; a,
-              const AlphaNum&amp; b = empty_alpha_num,
-              const AlphaNum&amp; c = empty_alpha_num,
-              const AlphaNum&amp; d = empty_alpha_num);
+        const AlphaNum&amp; b = empty_alpha_num,
+        const AlphaNum&amp; c = empty_alpha_num,
+        const AlphaNum&amp; d = empty_alpha_num);
 </pre>
 </div>
 
