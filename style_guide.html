@@ -3722,16 +3722,18 @@ consistent in how you break up the lines.</p>
 <p>In this example, the logical AND operator is always at
 the end of the lines:</p>
 
-<pre>if (this_one_thing &gt; this_other_thing &amp;&amp;
-    a_third_thing == a_fourth_thing &amp;&amp;
-    yet_another &amp;&amp; last_one) {
-  ...
+<pre>
+if (this_one_thing &gt; this_other_thing &amp;&amp;
+        a_third_thing == a_fourth_thing &amp;&amp;
+        yet_another &amp;&amp; last_one)
+{
+    ...
 }
 </pre>
 
 <p>Note that when the code wraps in this example, both of
 the <code>&amp;&amp;</code> logical AND operators are at
-the end of the line. This is more common in Google code,
+the end of the line. This is more common in our code,
 though wrapping all operators at the beginning of the
 line is also allowed. Feel free to insert extra
 parentheses judiciously because they can be very helpful
