@@ -3692,27 +3692,20 @@ x = r-&gt;y;
    <code>*</code> or <code>&amp;</code>.</li>
 </ul>
 
-<p>When declaring a pointer variable or argument, you may
-place the asterisk adjacent to either the type or to the
-variable name:</p>
+<p>When declaring a pointer variable or argument, you should
+place the asterisk adjacent to the type:</p>
 
-<pre>// These are fine, space preceding.
-char *c;
-const string &amp;str;
-
+<pre>
 // These are fine, space following.
-char* c;    // but remember to do "char* c, *d, *e, ...;"!
+char* c;
 const string&amp; str;
 </pre>
 
-<pre class="badcode">char * c;  // Bad - spaces on both sides of *
+<pre class="badcode">
+char * c;  // Bad - spaces on both sides of *
 const string &amp; str;  // Bad - spaces on both sides of &amp;
+const string &amp;str;   // Bad - &amp; is adjacent to variable name
 </pre>
-
-<p>You should do this consistently within a single
-file,
-so, when modifying an existing file, use the style in
-that file.</p>
 
 </div> 
 
