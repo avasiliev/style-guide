@@ -3588,56 +3588,49 @@ else
 <h3 id="Loops_and_Switch_Statements">Loops and Switch Statements</h3>
 
 <div class="summary">
-<p>Switch statements may use braces for blocks. Annotate
-non-trivial fall-through between cases.
-Braces are optional for single-statement loops.
+<p>Braces are not used for single-statement loops.
+Annotate non-trivial fall-through between cases in <code>switch</code>.
 Empty loop bodies should use <code>{}</code> or <code>continue</code>.</p>
 </div>
 
 <div class="stylebody">
 
-<p><code>case</code> blocks in <code>switch</code>
-statements can have curly braces or not, depending on
-your preference. If you do include curly braces they
-should be placed as shown below.</p>
-
 <p>If not conditional on an enumerated value, switch
 statements should always have a <code>default</code> case
 (in the case of an enumerated value, the compiler will
 warn you if any values are not handled). If the default
-case should never execute, simply
-<code>assert</code>:</p>
+case should never execute, simply throw an exception:</p>
 
  
 
 <div>
-<pre>switch (var) {
-  case 0: {  // 2 space indent
+<pre>
+switch (var)
+{
+case 0:      // no indent
     ...      // 4 space indent
     break;
-  }
-  case 1: {
+case 1:
     ...
     break;
-  }
-  default: {
-    assert(false);
-  }
+default:
+    throw std::runtime_error("Unexpected `var' value");
 }
 </pre>
 </div> 
 
 
+<p> Braces are not used in single-statement loops.
+They are required for loops with multiple lines.</p>
 
+<pre>
+for (int i = 0; i &lt; some_number; ++i)
+    std::cout &lt;&lt; "I love you\n" &lt;&lt; std::endl;  // 4 space indent
 
-
-<p> Braces are optional for single-statement loops.</p>
-
-<pre>for (int i = 0; i &lt; kSomeNumber; ++i)
-  printf("I love you\n");
-
-for (int i = 0; i &lt; kSomeNumber; ++i) {
-  printf("I take it back\n");
+for (int i = 0; i &lt; some_number; ++i)
+{
+    std::cout &lt;&lt; "OK!" &lt;&lt; std::endl;
+    std::cout &lt;&lt; "I take it back" &lt;&lt; std::endl;
 }
 </pre>
 
@@ -3645,14 +3638,20 @@ for (int i = 0; i &lt; kSomeNumber; ++i) {
 <p>Empty loop bodies should use <code>{}</code> or
 <code>continue</code>, but not a single semicolon.</p>
 
-<pre>while (condition) {
-  // Repeat test until it returns false.
+<pre>while (condition)
+{
+    // Repeat test until it returns false.
 }
-for (int i = 0; i &lt; kSomeNumber; ++i) {}  // Good - empty body.
-while (condition) continue;  // Good - continue indicates no logic.
+
+for (int i = 0; i &lt; some_number; ++i)    // Good - empty body.
+{}
+
+while (condition)          // Good - continue indicates no logic.
+    continue;
 </pre>
 
-<pre class="badcode">while (condition);  // Bad - looks like part of do/while loop.
+<pre class="badcode">
+while (condition);     // Bad - looks like part of do/while loop.
 </pre>
 
 </div> 
