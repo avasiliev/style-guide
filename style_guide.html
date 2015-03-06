@@ -3918,29 +3918,22 @@ private:
 <h3 id="Constructor_Initializer_Lists">Constructor Initializer Lists</h3>
 
 <div class="summary">
-<p>Constructor initializer lists can be all on one line or
-with subsequent lines indented four spaces.</p>
+<p>Constructor initializer lists can be placed each on a separate line.</p>
 </div>
 
 <div class="stylebody">
 
-<p>There are two acceptable formats for initializer
+<p>There is one acceptable format for initializer
 lists:</p>
 
-<pre>// When it all fits on one line:
-MyClass::MyClass(int var) : some_var_(var), some_other_var_(var + 1) {}
-</pre>
-
-<p>or</p>
-
-<pre>// When it requires multiple lines, indent 4 spaces, putting the colon on
-// the first initializer line:
+<pre>
 MyClass::MyClass(int var)
-    : some_var_(var),             // 4 space indent
-      some_other_var_(var + 1) {  // lined up
-  ...
-  DoSomething();
-  ...
+    : some_var_(var)              // 4 space indent
+    , some_other_var_(var + 1)    // Note: comma precedes expression
+{
+    ...
+    DoSomething();
+    ...
 }
 </pre>
 
